@@ -1,0 +1,22 @@
+GET     /                         controllers.HomeController.index
+
+POST    /login                    controllers.LoginController.login
+
+POST    /logout                   controllers.LogoutController.logout
+
+GET     /config                   controllers.admin.ConfigController.get
+GET     /config/:path             controllers.admin.ConfigController.getAtPath(path)
+
+POST    /parser/json              controllers.admin.BodyParsers.parseJson(maxLength: Int ?= 10240)
+POST    /parser/json/tolerant     controllers.admin.BodyParsers.parseJsonIgnoreContentType(maxLength: Int ?= 10240)
+POST    /parser/json/save/:path   controllers.admin.BodyParsers.saveBodyToFile(path: String, maxLength: Int ?= 10240)
+
+GET     /log                      controllers.admin.LoggingController.log
+
+POST    /item                     controllers.admin.AuthItemController.create
+GET     /item/:id                 controllers.admin.AuthItemController.findById(id: java.util.UUID)
+PUT     /item/:id                 controllers.admin.AuthItemController.addTag(id: java.util.UUID)
+DELETE  /item/:id                 controllers.admin.AuthItemController.delete(id: java.util.UUID)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
